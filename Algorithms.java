@@ -13,12 +13,16 @@ public class Algorithms {
         int greater500 = greaterThan(500);
         int greatest = greatest(); 
         int lowest = least(); 
+        int total = sum(); 
+        double mean = average(); 
         System.out.println("Odds: " + odds);
         System.out.println("Evens: " + evens);
         System.out.println("Double Digits: " + twoDigits);
         System.out.println("Greater than 500: " + greater500);
         System.out.println("The Greatest Value: " + greatest);
         System.out.println("The Lowest Value: " + lowest);
+        System.out.println("The Sum of all values: " + total);
+        System.out.println("The Arithmetic Average: " + mean);
         s.close();
     }
 
@@ -80,5 +84,29 @@ public class Algorithms {
                 least = s.nextInt();
         }
         return least;
+    }
+
+    public static int sum() throws FileNotFoundException{
+        s = new Scanner(f);
+        int sum = 0;
+        while (s.hasNext()) {
+            sum += s.nextInt();
+        }
+        return sum;
+    }
+
+
+    public static double average() throws FileNotFoundException{
+        s = new Scanner(f);
+        double mean = 0;
+        int numOfnums = 0;
+        int total = sum();
+        s = new Scanner(f);
+        while (s.hasNext()) {
+            numOfnums++;
+            s.next();
+        }
+        mean = total / numOfnums; 
+        return mean;
     }
 }
