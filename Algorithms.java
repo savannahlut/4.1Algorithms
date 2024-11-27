@@ -15,6 +15,7 @@ public class Algorithms {
         int lowest = least(); 
         int total = sum(); 
         double mean = average(); 
+        int mode = mode();
         System.out.println("Odds: " + odds);
         System.out.println("Evens: " + evens);
         System.out.println("Double Digits: " + twoDigits);
@@ -23,6 +24,7 @@ public class Algorithms {
         System.out.println("The Lowest Value: " + lowest);
         System.out.println("The Sum of all values: " + total);
         System.out.println("The Arithmetic Average: " + mean);
+        System.out.println("The Mode: " + mode);
         s.close();
     }
 
@@ -97,7 +99,6 @@ public class Algorithms {
 
 
     public static double average() throws FileNotFoundException{
-        s = new Scanner(f);
         double mean = 0;
         int numOfnums = 0;
         int total = sum();
@@ -108,5 +109,26 @@ public class Algorithms {
         }
         mean = total / numOfnums; 
         return mean;
+    }
+
+    public static int mode() throws FileNotFoundException{
+        int mode = 0;
+        int times = 0;
+        s = new Scanner(f);
+        while (s.hasNext()) {
+            int timesIndividual = 0;
+            Scanner v = new Scanner(f);
+            while (v.hasNext()) {
+                if(s.nextInt() == v.nextInt())
+                timesIndividual++;
+            }
+            if (timesIndividual > times){
+                times = timesIndividual;
+                /* please help it's giving the NoSuchElementException */
+                mode = s.nextInt();
+            }
+            v.close();
+        }
+        return mode;
     }
 }
