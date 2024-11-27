@@ -101,7 +101,7 @@ public class Algorithms {
     public static double average() throws FileNotFoundException{
         double mean = 0;
         int numOfnums = 0;
-        int total = sum();
+        double total = sum();
         s = new Scanner(f);
         while (s.hasNext()) {
             numOfnums++;
@@ -124,8 +124,7 @@ public class Algorithms {
             }
             if (timesIndividual > times){
                 times = timesIndividual;
-                /* please help it's giving the NoSuchElementException */
-                mode = s.nextInt();
+                mode = ;
             }
             v.close();
         }
