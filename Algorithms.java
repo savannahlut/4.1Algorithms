@@ -1,6 +1,9 @@
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+/* imported for mode method*/
+import java.util.ArrayList;
+import java.util.Collections; 
 
 public class Algorithms {
     private static File f;
@@ -112,21 +115,28 @@ public class Algorithms {
     }
 
     public static int mode() throws FileNotFoundException{
-        int mode = 0;
-        int times = 0;
-        s = new Scanner(f);
-        while (s.hasNext()) {
-            int timesIndividual = 0;
-            Scanner v = new Scanner(f);
-            while (v.hasNext()) {
-                if(s.nextInt() == v.nextInt())
-                timesIndividual++;
+        ArrayList<Integer> numbers = new ArrayList<>(); 
+        s = new Scanner(f); 
+        while (s.hasNextInt()){
+            numbers.add(s.nextInt());
+        }
+        Collections.sort(numbers);
+        int mode = numbers.get(0);
+        int max = 1; 
+        int current = 1;
+        for (int i = 1; i < numbers.size(); i++){
+            if (numbers.get(i) == numbers.get(i - 1)){
+                current++;
+            }else{
+                if (current > max){
+                mode = numbers.get(i-1);
+                max = current;
+                }
+                current = 1;
             }
-            if (timesIndividual > times){
-                times = timesIndividual;
-                mode = ;
-            }
-            v.close();
+        }
+        if (current > max){
+            mode = numbers.get(numbers.size() - 1);
         }
         return mode;
     }
